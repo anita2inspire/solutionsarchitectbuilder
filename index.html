@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architect Builder</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true">▤</span><h1>Architect Builder</h1></div>
+  <div class="tools" role="toolbar" aria-label="Canvas tools">
+    <button id="btn-select" class="tool active" title="Select and move (V)">Select</button>
+    <button id="btn-connect" class="tool" title="Click a service, then another, to draw an arrow (C)">Connect</button>
+    <span class="sep"></span>
+    <button id="btn-zoom-out" class="tool" title="Zoom out">−</button>
+    <span id="zoom-label" class="zoom-label">100%</span>
+    <button id="btn-zoom-in" class="tool" title="Zoom in">+</button>
+  </div>
+  <div class="file">
+    <button id="btn-save" title="Download the design as a .json file">Save</button>
+    <button id="btn-load" title="Open a saved .json design">Open</button>
+    <button id="btn-export" class="primary" title="Download the diagram as a PNG image">Export PNG</button>
+    <button id="btn-clear" title="Remove everything from the canvas">Clear</button>
+    <input id="file-input" type="file" accept=".json,application/json" hidden>
+  </div>
+</header>
+
+<section class="brief" id="brief">
+  <button id="brief-toggle" class="brief-head" aria-expanded="true" aria-controls="brief-body">
+    <span>Brief</span><span class="hint">Paste the requirements you are designing for</span>
+  </button>
+  <div id="brief-body">
+    <textarea id="brief-text" rows="3" placeholder="Example: A retail company needs a website for 50,000 daily users. Traffic spikes on weekends. The database must survive an AZ failure. Product images are served globally. Keep costs low for the batch job that runs nightly."></textarea>
+  </div>
+</section>
+
+<main class="workspace">
+  <aside class="palette" aria-label="Services">
+    <div class="search"><input id="search" type="search" placeholder="Search services" autocomplete="off" aria-label="Search services"></div>
+    <div id="palette-list" class="palette-list"></div>
+  </aside>
+
+  <section id="viewport" class="viewport" aria-label="Design canvas">
+    <div id="stage" class="stage">
+      <div id="world" class="world">
+        <svg id="links" class="links" aria-hidden="true"></svg>
+      </div>
+    </div>
+    <div id="empty" class="empty">
+      <strong>Start with a container</strong>
+      <span>Drag a Region from the left, then a VPC, Availability Zones and subnets inside it. Drop services into the subnets.</span>
+    </div>
+    <div id="mode-tip" class="mode-tip" hidden></div>
+  </section>
+
+  <aside id="props" class="props" aria-label="Properties"></aside>
+</main>
+
+<script src="data/core.js"></script>
+<script src="data/services-1.js"></script>
+<script src="data/services-2.js"></script>
+<script src="data/services-3.js"></script>
+<script src="js/state.js"></script>
+<script src="js/render.js"></script>
+<script src="js/interact.js"></script>
+<script src="js/panel.js"></script>
+<script src="js/export.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
